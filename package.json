@@ -1,0 +1,27 @@
+{
+	"name": "simon-says",
+	"version": "1.0.0",
+	"description": "Simon Says simple JS game",
+	"main": "index.html",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/guido732/simon-says.git"
+	},
+	"keywords": [
+		"game",
+		"simon",
+		"says",
+		"javascript",
+		"vanilla",
+		"js"
+	],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/guido732/simon-says/issues"
+	},
+	"homepage": "https://github.com/guido732/simon-says#readme"
+}
