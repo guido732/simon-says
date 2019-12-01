@@ -3,9 +3,10 @@
 }
 .button-wrapper {
 	width: 300px;
-
 	border-radius: 50%;
 	overflow: hidden;
+	cursor: pointer;
+	user-select: none;
 }
 .color-button {
 	height: 150px;
