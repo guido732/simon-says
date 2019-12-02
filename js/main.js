@@ -5,6 +5,27 @@ let round = 0;
 const $messages = document.querySelector("#messages");
 const $roundCounter = document.querySelector("#round-counter");
 
+// Simulate click with keyboard
+document.addEventListener("keypress", function(event) {
+	// console.log(e.key);
+	switch (event.key) {
+		case "1":
+			document.querySelector("#button1").click();
+			break;
+		case "2":
+			document.querySelector("#button2").click();
+			break;
+		case "3":
+			document.querySelector("#button3").click();
+			break;
+		case "4":
+			document.querySelector("#button4").click();
+			break;
+		default:
+			break;
+	}
+});
+
 document.querySelector("#start-button").onclick = startGame;
 lockUserInput();
 
@@ -40,8 +61,6 @@ function handleUserInput(e) {
 	const $clickedButton = e.target;
 	highlight($clickedButton);
 	sequenceUser.push($clickedButton);
-	console.log(sequenceUser);
-
 	const $computerSelection = sequenceComputer[sequenceUser.length - 1];
 	if ($clickedButton.id !== $computerSelection.id) {
 		gameOver();
@@ -78,24 +97,6 @@ function lockUserInput() {
 }
 
 function unlockUserInput() {
-	document.addEventListener("keydown", event => {
-		switch (event.key) {
-			case "1":
-				document.querySelector("#button1").click();
-				break;
-			case "2":
-				document.querySelector("#button2").click();
-				break;
-			case "3":
-				document.querySelector("#button3").click();
-				break;
-			case "4":
-				document.querySelector("#button4").click();
-				break;
-			default:
-				break;
-		}
-	});
 	document.querySelectorAll(".color-button").forEach($button => {
 		$button.onclick = handleUserInput;
 	});
