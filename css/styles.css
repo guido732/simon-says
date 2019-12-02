@@ -8,6 +8,9 @@
 	cursor: pointer;
 	user-select: none;
 }
+.rotate-animation {
+	animation: rotation 0.75s ease-in-out;
+}
 .color-button {
 	height: 150px;
 	max-width: 150px !important;
@@ -17,7 +20,7 @@
 	font-size: 6rem;
 	font-weight: bold;
 	opacity: 0.5;
-	transition: opacity 0.25s ease-out;
+	transition: opacity 0.25s linear;
 }
 .color-button:nth-child(1) {
 	background-color: limegreen;
@@ -57,5 +60,14 @@
 	.color-button {
 		height: 300px;
 		max-width: 300px !important;
+	}
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0turn);
+	}
+	to {
+		transform: rotate(2turn);
 	}
 }

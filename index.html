@@ -9,19 +9,20 @@
 		<link rel="stylesheet" href="./css/styles.css" />
 	</head>
 	<body>
-		<div class="container my-4">
+		<div class="container mt-2 mb-3">
 			<h1 class="text-center mb-3">Simon Says!</h1>
-			<h4 class="text-center mb-3">
+			<p class="text-center mb-3">
 				Click start button to play <br />
+				Play with your mouse clicking on the screen <br />
 				You can also use keys 1-4 to play with your keyboard
-			</h4>
-			<div class="row align-items-start">
+			</p>
+			<div class="row align-items-start mb-3">
 				<div class="col-sm-8">
 					<div class="alert alert-info" id="messages" role="alert">
 						Welcome! press on the START button to play
 					</div>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<div class="alert alert-warning" id="round-counter" role="alert">
 						Round N#-
 					</div>
@@ -33,7 +34,7 @@
 		</div>
 
 		<div class="container">
-			<div class="row  mx-auto text-center button-wrapper mt-5">
+			<div class="row  mx-auto text-center button-wrapper" id="button-wrapper">
 				<div class="col-sm-6 color-button" id="button1">1</div>
 				<div class="col-sm-6 color-button" id="button2">2</div>
 				<div class="col-sm-6 color-button" id="button3">3</div>

@@ -32,7 +32,11 @@ lockUserInput();
 function startGame() {
 	reset();
 	document.querySelector("#start-button").innerHTML = "STOP/RESET";
-	handleRound();
+	document.querySelector("#button-wrapper").classList.add("rotate-animation");
+	setTimeout(() => {
+		document.querySelector("#button-wrapper").classList.remove("rotate-animation");
+		handleRound();
+	}, 1000);
 }
 
 function handleRound() {
