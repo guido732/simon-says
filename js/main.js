@@ -16,22 +16,50 @@ function startGame() {
 function handleRound() {
 	updateText(`Round N# ${round}`, $roundCounter);
 	updateText("Computer's turn!", $messages);
+	lockUserInput();
 	const $selectedButton = getRandomColorButton();
 	sequenceComputer.push($selectedButton);
 	const userTurnDelay = (sequenceComputer.length + 1) * 1000;
-	sequenceComputer.forEach(($button, index) => {
+	sequenceComputer.forEach(function($button, index) {
 		const sequenceDelay = (index + 1) * 1000;
-		setTimeout(() => {
+		setTimeout(function() {
 			highlight($button);
 		}, sequenceDelay);
 	});
-	setTimeout(() => {
+	setTimeout(function() {
 		updateText("Your Turn!", $messages);
 		unlockUserInput();
 	}, userTurnDelay);
 	sequenceUser = [];
 	round++;
 	updateText(`Round N# ${round}`, $roundCounter);
+}
+
+function handleUserInput(e) {
+	const $clickedButton = e.target;
+	highlight($clickedButton);
+	sequenceUser.push($clickedButton);
+	console.log(sequenceUser);
+
+	const $computerSelection = sequenceComputer[sequenceUser.length - 1];
+	if ($clickedButton.id !== $computerSelection.id) {
+		gameOver();
+		return;
+	}
+	if (sequenceUser.length === sequenceComputer.length) {
+		lockUserInput();
+		setTimeout(handleRound, 1000);
+	}
+}
+
+function getRandomColorButton() {
+	const $colorButtons = document.querySelectorAll(".color-button");
+	const buttonIndex = Math.floor(Math.random() * $colorButtons.length);
+	return $colorButtons[buttonIndex];
+}
+
+function updateText(newText, elementToUpdate) {
+	elementToUpdate.innerHTML = newText;
 }
 
 function highlight(elementToHighlight) {
@@ -41,33 +69,8 @@ function highlight(elementToHighlight) {
 	}, 500);
 }
 
-function getRandomColorButton() {
-	const $colorButtons = document.querySelectorAll(".color-button");
-	const buttonIndex = Math.floor(Math.random() * $colorButtons.length);
-	return $colorButtons[buttonIndex];
-}
-
-function handleUserInput(e) {
-	const $clickedButton = e.target;
-	highlight($clickedButton);
-	sequenceUser.push($clickedButton);
-	const $computerSelection = sequenceComputer[sequenceUser.length - 1];
-	if ($clickedButton.id !== $computerSelection.id) {
-		gameOver();
-		return;
-	}
-	if ($clickedButton.length === $computerSelection.length) {
-		lockUserInput();
-		setTimeout(handleRound, 1000);
-	}
-}
-
-function updateText(textToUpdate, elementToUpdate) {
-	elementToUpdate.innerHTML = textToUpdate;
-}
-
 function lockUserInput() {
-	document.querySelectorAll("color-button").forEach(($button, index) => {
+	document.querySelectorAll(".color-button").forEach($button => {
 		$button.onclick = function() {};
 	});
 }
