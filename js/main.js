@@ -10,12 +10,13 @@ lockUserInput();
 
 function startGame() {
 	reset();
+	document.querySelector("#start-button").innerHTML = "STOP/RESET";
 	handleRound();
 }
 
 function handleRound() {
 	updateText(`Round N# ${round}`, $roundCounter);
-	updateText("Computer's turn!", $messages);
+	updateText("Computer's turn!", $messages, "success");
 	lockUserInput();
 	const $selectedButton = getRandomColorButton();
 	sequenceComputer.push($selectedButton);
@@ -27,7 +28,7 @@ function handleRound() {
 		}, sequenceDelay);
 	});
 	setTimeout(function() {
-		updateText("Your Turn!", $messages);
+		updateText("Your Turn!", $messages, "info");
 		unlockUserInput();
 	}, userTurnDelay);
 	sequenceUser = [];
@@ -58,8 +59,9 @@ function getRandomColorButton() {
 	return $colorButtons[buttonIndex];
 }
 
-function updateText(newText, elementToUpdate) {
+function updateText(newText, elementToUpdate, color = "warning") {
 	elementToUpdate.innerHTML = newText;
+	elementToUpdate.className = `alert alert-${color}`;
 }
 
 function highlight(elementToHighlight) {
@@ -76,6 +78,24 @@ function lockUserInput() {
 }
 
 function unlockUserInput() {
+	document.addEventListener("keydown", event => {
+		switch (event.key) {
+			case "1":
+				document.querySelector("#button1").click();
+				break;
+			case "2":
+				document.querySelector("#button2").click();
+				break;
+			case "3":
+				document.querySelector("#button3").click();
+				break;
+			case "4":
+				document.querySelector("#button4").click();
+				break;
+			default:
+				break;
+		}
+	});
 	document.querySelectorAll(".color-button").forEach($button => {
 		$button.onclick = handleUserInput;
 	});
@@ -89,5 +109,6 @@ function reset() {
 
 function gameOver() {
 	lockUserInput();
-	updateText("Game over! Start again?", $messages);
+	updateText("Game over! Start again?", $messages, "danger");
+	document.querySelector("#start-button").innerHTML = "START NEW GAME";
 }
